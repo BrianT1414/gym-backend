@@ -13,10 +13,13 @@ class SetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 	    if (Auth::check()) {
-		return Set::where('user_id', Auth::user()->id)->get();
+		    return Set::where('user_id', Auth::user()->id)
+			    ->when($request->get('workout_id'), function ($q) use ($request) {
+			    $q->where('workout_id', $request->get('workout_id'));
+		    })->get();
 	    }
 	    return [];
     }

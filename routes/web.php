@@ -18,7 +18,10 @@ Route::get('/', function () {
 Route::get('auth', 'AuthController@checkUser');
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
+Route::get('workouts/new', 'WorkoutController@store');
+Route::get('workouts/continue', 'WorkoutController@continueWorkout');
 
+Route::resource('workouts', 'WorkoutController');
 Route::resource('muscle_groups', 'MuscleGroupController');
 Route::resource('muscles', 'MuscleController');
 Route::resource('exercises', 'ExerciseController');
