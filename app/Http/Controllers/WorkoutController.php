@@ -88,4 +88,18 @@ class WorkoutController extends Controller
     {
         //
     }
+
+    public function current() {
+        if (Auth::check()) {
+            $workout = Workout::where('user_id', Auth::user()->id)->latest()->first();
+
+            if ($workout->created_at->isToday()) {
+                return $workout;
+            }
+
+            return response()->json([], 404);
+        }
+
+	    return response()->json(['message' => 'unauthorized'], 401);
+    }
 }

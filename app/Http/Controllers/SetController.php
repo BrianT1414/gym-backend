@@ -86,4 +86,13 @@ class SetController extends Controller
 	    }
 	    return response()->json(['message' => 'unauthorized'], 401);
     }
+
+    public function lastSet($id)
+    {
+        if (Auth::check()) {
+            return Set::where('user_id', Auth::user()->id)->where('exercise_id', $id)->orderBy('created_at', 'desc')->first();
+        }
+
+	    return response()->json(['message' => 'unauthorized'], 401);
+    }
 }

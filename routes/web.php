@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('auth', 'AuthController@checkUser');
 Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
+Route::get('exercises/{id}/sets/last', 'SetController@lastSet');
+Route::get('workouts/current', 'WorkoutController@current');
 Route::get('workouts/new', 'WorkoutController@store');
 Route::get('workouts/continue', 'WorkoutController@continueWorkout');
 
