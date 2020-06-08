@@ -15,8 +15,8 @@ class CreateWorkoutsTable extends Migration
     {
         Schema::create('workouts', function (Blueprint $table) {
             $table->increments('id');
-	    $table->integer('template_id')->nullable();
-	    $table->text('notes')->nullable();
+	        $table->integer('template_id')->nullable();
+	        $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

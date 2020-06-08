@@ -12,4 +12,10 @@ class Workout extends Model
     {
 	    return $this->hasMany('App\Set');
     }
+
+    public function scopeWhereCentralDate($query, $column, $operator = '=', $centralDate)
+    {
+        $utcTime = \Carbon\Carbon::parse($centralDate, 'CST')->setTimezone('UTC');
+        return $query->where($column, $operator, $utcTime);
+    }
 }
