@@ -64,7 +64,10 @@ class SetController extends Controller
     public function update(Request $request, Set $set)
     {
 	    if (Auth::check() && $set->user_id == Auth::user()->id) {
-		    $set->update($request->all());
+		    $set->update([
+                'reps' => $request->get('reps'),
+                'weight' => $request->get('weight')
+            ]);
 
 		    return $set;
 	    }
